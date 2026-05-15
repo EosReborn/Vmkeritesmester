@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referenciák - VM Kerítés Mester</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#0d0f13;
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+.glass{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.gold{
+color:#d4af37;
+}
+
+.gold-bg{
+background:#d4af37;
+}
+
+.gallery img{
+transition:.3s ease;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+.hover-card{
+transition:.3s ease;
+}
+
+.hover-card:hover{
+transform:translateY(-8px);
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
+
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+<a href="index.html" class="flex items-center gap-3">
+
+<img src="./vm-logo.png"
+class="w-12 h-12 object-contain">
+
+<div>
+<h2 class="font-bold text-lg tracking-wide">
+VM Kerítés Mester
+</h2>
+</div>
+
+</a>
+
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+
+<a href="index.html" class="hover:text-white transition">
+Főoldal
+</a>
+
+<a href="rolam.html" class="hover:text-white transition">
+Rólam
+</a>
+
+<a href="referenciak.html" class="text-white">
+Referenciák
+</a>
+
+<a href="szolgaltatasok.html" class="hover:text-white transition">
+Szolgáltatások
+</a>
+
+<a href="kapcsolat.html" class="hover:text-white transition">
+Kapcsolat
+</a>
+
+</nav>
+
+<a href="tel:+36309388484"
+class="gold-bg text-black font-semibold px-5 py-3 rounded-2xl hidden md:block">
+Hívás
+</a>
+
+</div>
+
+</header>
+
+<section class="py-40 px-6">
+
+<div class="max-w-7xl mx-auto">
+
+<div class="text-center mb-20">
+
+<p class="gold uppercase tracking-[5px] text-sm mb-4">
+Referenciák
+</p>
+
+<h1 class="text-5xl md:text-7xl font-black">
+Munkáinkból
+</h1>
+
+<p class="text-gray-400 text-xl max-w-3xl mx-auto mt-8 leading-relaxed">
+Válogatás az elkészült munkákból. Valódi kivitelezések, modern megoldások és igényes részletek.
+</p>
+
+</div>
+
+<div class="grid md:grid-cols-3 gap-6 gallery">
+
+<img src="./kep1.JPG"
+class="rounded-3xl h-96 w-full object-cover shadow-2xl">
+
+<img src="./kep2.JPG"
+class="rounded-3xl h-96 w-full object-cover shadow-2xl">
+
+<img src="./kep3.JPG"
+class="rounded-3xl h-96 w-full object-cover shadow-2xl">
+
+<img src="./kep4.JPG"
+class="rounded-3xl h-96 w-full object-cover shadow-2xl">
+
+<img src="./kep5.JPG"
+class="rounded-3xl h-96 w-full object-cover shadow-2xl">
+
+<img src="./kep6.JPG"
+class="rounded-3xl h-96 w-full object-cover shadow-2xl">
+
+</div>
+
+<div class="glass rounded-[35px] p-8 md:p-12 mt-16 text-center hover-card">
+
+<h2 class="text-3xl md:text-5xl font-black mb-6">
+További munkák a Facebook oldalon
+</h2>
+
+<p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+A fotógaléria folyamatosan bővül. A legfrissebb munkákat, videókat és kivitelezéseket a Facebook oldalon lehet megtekinteni.
+</p>
+
+<div class="flex flex-col sm:flex-row justify-center gap-5">
+
+<a href="https://www.facebook.com/vmkeritesmester"
+target="_blank"
+class="gold-bg text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition">
+Facebook oldal megnyitása
+</a>
+
+<a href="kapcsolat.html"
+class="glass px-8 py-4 rounded-2xl hover:bg-white/10 transition">
+Ajánlatot kérek
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="border-t border-white/10">
+
+<div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-6">
+
+<div>
+<h3 class="text-2xl font-bold">
+VM Kerítés Mester
+</h3>
+
+<p class="text-gray-500 mt-3">
+Szigetszentmiklós • Prémium kivitelezés
+</p>
+</div>
+
+<div class="text-gray-500">
+© 2026 Minden jog fenntartva.
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
