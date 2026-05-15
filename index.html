@@ -376,6 +376,40 @@ Szigetszentmiklós • Prémium kivitelezés
 </div>
 
 </footer>
+<!-- COOKIE BANNER -->
+<div id="cookieBanner"
+class="fixed bottom-5 left-1/2 -translate-x-1/2 w-[92%] max-w-2xl glass rounded-3xl p-5 z-50 shadow-2xl">
 
+  <div class="flex flex-col md:flex-row items-center gap-4 justify-between">
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      Az oldal a jobb felhasználói élmény érdekében sütiket használ.
+      Az oldal használatával elfogadod a cookie-k használatát.
+    </p>
+
+    <button id="acceptCookies"
+    class="gold-bg text-black font-semibold px-6 py-3 rounded-2xl whitespace-nowrap hover:scale-105 transition">
+      Elfogadom
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+const cookieBanner = document.getElementById('cookieBanner');
+const acceptCookies = document.getElementById('acceptCookies');
+
+if(localStorage.getItem('cookieAccepted')){
+  cookieBanner.style.display = 'none';
+}
+
+acceptCookies.addEventListener('click', () => {
+  localStorage.setItem('cookieAccepted', 'true');
+  cookieBanner.style.display = 'none';
+});
+
+</script>
 </body>
 </html>
