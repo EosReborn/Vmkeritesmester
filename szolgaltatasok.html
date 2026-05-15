@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szolgáltatások - VM Kerítés Mester</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#0d0f13;
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+.glass{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.gold{
+color:#d4af37;
+}
+
+.gold-bg{
+background:#d4af37;
+}
+
+.hover-card{
+transition:.3s ease;
+}
+
+.hover-card:hover{
+transform:translateY(-8px);
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
+
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+<a href="index.html" class="flex items-center gap-3">
+
+<img src="./vm-logo.png"
+class="w-12 h-12 object-contain">
+
+<div>
+<h2 class="font-bold text-lg tracking-wide">
+VM Kerítés Mester
+</h2>
+</div>
+
+</a>
+
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+
+<a href="index.html" class="hover:text-white transition">
+Főoldal
+</a>
+
+<a href="rolam.html" class="hover:text-white transition">
+Rólam
+</a>
+
+<a href="referenciak.html" class="hover:text-white transition">
+Referenciák
+</a>
+
+<a href="szolgaltatasok.html" class="text-white">
+Szolgáltatások
+</a>
+
+<a href="kapcsolat.html" class="hover:text-white transition">
+Kapcsolat
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="py-40 px-6">
+
+<div class="max-w-7xl mx-auto">
+
+<div class="text-center mb-20">
+
+<p class="gold uppercase tracking-[5px] text-sm mb-4">
+Szolgáltatások
+</p>
+
+<h1 class="text-5xl md:text-7xl font-black">
+Amiben segíteni tudunk
+</h1>
+
+</div>
+
+<div class="grid lg:grid-cols-2 gap-10">
+
+<div class="glass rounded-[35px] overflow-hidden hover-card">
+
+<img src="./kep1.JPG"
+class="h-80 w-full object-cover">
+
+<div class="p-10">
+
+<h2 class="text-4xl font-black mb-6">
+Kerítés építés
+</h2>
+
+<p class="text-gray-300 leading-relaxed text-lg">
+Modern és időtálló kerítések prémium kivitelezéssel.
+</p>
+
+</div>
+
+</div>
+
+<div class="glass rounded-[35px] overflow-hidden hover-card">
+
+<img src="./kep2.JPG"
+class="h-80 w-full object-cover">
+
+<div class="p-10">
+
+<h2 class="text-4xl font-black mb-6">
+Térburkolás
+</h2>
+
+<p class="text-gray-300 leading-relaxed text-lg">
+Precíz kivitelezés és modern kültéri megoldások.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</body>
+</html>
