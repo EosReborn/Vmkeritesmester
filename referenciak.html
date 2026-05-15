@@ -59,115 +59,7 @@ transition:.3s ease;
 transform:translateY(-8px);
 }
 
-
-/* PREMIUM DESIGN UPGRADE */
-body::before{
-content:"";
-position:fixed;
-top:-180px;
-right:-180px;
-width:420px;
-height:420px;
-background:rgba(212,175,55,.10);
-filter:blur(120px);
-border-radius:9999px;
-pointer-events:none;
-z-index:0;
-}
-
-body::after{
-content:"";
-position:fixed;
-bottom:-220px;
-left:-180px;
-width:460px;
-height:460px;
-background:rgba(255,128,0,.09);
-filter:blur(130px);
-border-radius:9999px;
-pointer-events:none;
-z-index:0;
-}
-
-section, header, footer{
-position:relative;
-z-index:1;
-}
-
-.glass{
-background:rgba(255,255,255,.06);
-backdrop-filter:blur(16px);
--webkit-backdrop-filter:blur(16px);
-border:1px solid rgba(255,255,255,.08);
-box-shadow:
-0 8px 32px rgba(0,0,0,.35),
-inset 0 1px 0 rgba(255,255,255,.06);
-}
-
-.gold{
-background:linear-gradient(135deg,#ffe27a,#d4af37,#b8860b);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-text-shadow:0 0 30px rgba(212,175,55,.25);
-}
-
-.gold-bg{
-background:linear-gradient(135deg,#ffe27a,#d4af37,#b8860b);
-box-shadow:0 15px 40px rgba(212,175,55,.18);
-transition:all .35s ease;
-}
-
-.gold-bg:hover{
-transform:translateY(-3px);
-box-shadow:0 18px 55px rgba(212,175,55,.32);
-}
-
-.hover-card{
-transition:all .35s ease;
-}
-
-.hover-card:hover{
-transform:translateY(-10px) scale(1.01);
-box-shadow:
-0 20px 60px rgba(0,0,0,.45),
-0 0 30px rgba(212,175,55,.08);
-}
-
-.gallery img{
-transition:all .35s ease;
-}
-
-.gallery img:hover{
-transform:scale(1.04);
-filter:brightness(1.1);
-}
-
-header{
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-background:rgba(0,0,0,.35);
-border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-h1{
-letter-spacing:-3px;
-line-height:.95;
-}
-
-a{
-transition:all .35s ease;
-}
-
-.cinematic-line{
-height:1px;
-background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent);
-}
-
 </style>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -269,7 +161,7 @@ Hívás most
 
 <div class="max-w-7xl mx-auto">
 
-<div class="text-center mb-20" data-aos="fade-up">
+<div class="text-center mb-20">
 
 <p class="gold uppercase tracking-[5px] text-sm mb-4">
 Referenciák
@@ -287,27 +179,27 @@ Válogatás az elkészült munkákból. Valódi kivitelezések, modern megoldás
 
 <div class="grid md:grid-cols-3 gap-6 gallery">
 
-<img src="./kep1.JPG" data-aos="zoom-in"
+<img src="./kep1.JPG"
 class="rounded-3xl h-96 w-full object-cover shadow-2xl">
 
-<img src="./kep2.JPG" data-aos="zoom-in"
+<img src="./kep2.JPG"
 class="rounded-3xl h-96 w-full object-cover shadow-2xl">
 
-<img src="./kep3.JPG" data-aos="zoom-in"
+<img src="./kep3.JPG"
 class="rounded-3xl h-96 w-full object-cover shadow-2xl">
 
-<img src="./kep4.JPG" data-aos="zoom-in"
+<img src="./kep4.JPG"
 class="rounded-3xl h-96 w-full object-cover shadow-2xl">
 
-<img src="./kep5.JPG" data-aos="zoom-in"
+<img src="./kep5.JPG"
 class="rounded-3xl h-96 w-full object-cover shadow-2xl">
 
-<img src="./kep6.JPG" data-aos="zoom-in"
+<img src="./kep6.JPG"
 class="rounded-3xl h-96 w-full object-cover shadow-2xl">
 
 </div>
 
-<div class="glass rounded-[35px] data-aos="fade-up" p-8 md:p-12 mt-16 text-center hover-card">
+<div class="glass rounded-[35px] p-8 md:p-12 mt-16 text-center hover-card">
 
 <h2 class="text-3xl md:text-5xl font-black mb-6">
 További munkák a Facebook oldalon
@@ -362,6 +254,7 @@ Szigetszentmiklós • Prémium kivitelezés
 
 
 <script>
+
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
@@ -370,39 +263,7 @@ menuBtn.addEventListener('click', () => {
 mobileMenu.classList.toggle('hidden');
 });
 }
-</script>
 
-
-<!-- MOBILE FLOATING CTA -->
-<div class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 md:hidden flex gap-3 glass px-4 py-3 rounded-full">
-
-<a href="tel:+36309388484" class="gold-bg text-black px-5 py-3 rounded-full font-bold">
-Hívás
-</a>
-
-<a href="https://www.facebook.com/vmkeritesmester" target="_blank" class="glass px-5 py-3 rounded-full">
-Facebook
-</a>
-
-</div>
-
-
-<script>
-AOS.init({
-duration:900,
-once:true,
-offset:80
-});
-
-const hero = document.querySelector('.hero');
-
-if(hero){
-window.addEventListener('mousemove',(e)=>{
-const x = (window.innerWidth / 2 - e.pageX) / 80;
-const y = (window.innerHeight / 2 - e.pageY) / 80;
-hero.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
-});
-}
 </script>
 
 </body>
