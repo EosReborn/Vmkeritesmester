@@ -3,127 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adatkezelési Tájékoztató</title>
-
+<title>Adatkezelési Tájékoztató — VM Kerítés Mester</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-
-body{
-background:#0d0f13;
-color:white;
-font-family:'Inter',sans-serif;
-}
-
-.glass{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.08);
-}
-
-.gold{
-color:#d4af37;
-}
-
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+  html{scroll-behavior:smooth}
+  body{background:#0a0c10;color:#fff;overflow-x:hidden}
+  .glass{background:rgba(255,255,255,.04);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08)}
+  .glass-strong{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+  .gold{color:#d4af37}
+  .gold-bg{background:linear-gradient(135deg,#e6c558 0%,#d4af37 50%,#b8941f 100%)}
+  .text-gradient{background:linear-gradient(135deg,#fff 0%,#d4af37 50%,#fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#d4af37;transition:width .3s ease}
+  .nav-link{position:relative;transition:color .2s}
+  .nav-link:hover::after{width:100%}
+  .grid-bg{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px}
+  .shine{position:relative;overflow:hidden}
+  .shine::before{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shine 3s ease-in-out infinite}
+  @keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+  ::selection{background:#d4af37;color:#000}
 </style>
 </head>
-
 <body>
 
-<section class="py-20 px-6">
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/50 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="./vm-logo.png" alt="VM logo" class="w-10 h-10 md:w-12 md:h-12 object-contain">
+      <div>
+        <h2 class="font-bold text-base md:text-lg tracking-wide leading-none">VM Kerítés Mester</h2>
+        <p class="text-[10px] md:text-xs text-gray-500 mt-1 tracking-widest uppercase">Szigetszentmiklós</p>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
+      <a href="index.html" class="nav-link hover:text-white">Főoldal</a>
+      <a href="rolam.html" class="nav-link hover:text-white">Rólam</a>
+      <a href="referenciak.html" class="nav-link hover:text-white">Referenciák</a>
+      <a href="szolgaltatasok.html" class="nav-link hover:text-white">Szolgáltatások</a>
+      <a href="kapcsolat.html" class="nav-link hover:text-white">Kapcsolat</a>
+    </nav>
+    <a href="tel:+36309388484" class="gold-bg text-black font-semibold px-4 md:px-5 py-2.5 md:py-3 rounded-2xl hidden md:flex items-center gap-2 shine">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Hívás
+    </a>
+    <button id="menuBtn" aria-label="Menü" class="md:hidden text-white p-2">
+      <svg id="menuIconOpen" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg id="menuIconClose" class="hidden" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black/95">
+    <div class="flex flex-col px-6 py-6 gap-4 text-gray-300 text-lg">
+      <a href="index.html" class="hover:text-white py-2">Főoldal</a>
+      <a href="rolam.html" class="hover:text-white py-2">Rólam</a>
+      <a href="referenciak.html" class="hover:text-white py-2">Referenciák</a>
+      <a href="szolgaltatasok.html" class="hover:text-white py-2">Szolgáltatások</a>
+      <a href="kapcsolat.html" class="hover:text-white py-2">Kapcsolat</a>
+      <a href="tel:+36309388484" class="gold-bg text-black font-semibold px-5 py-4 rounded-2xl text-center mt-2">📞 Hívás most</a>
+    </div>
+  </div>
+</header>
 
-<div class="max-w-4xl mx-auto glass rounded-[35px] p-8 md:p-14">
+<!-- CONTENT -->
+<section class="pt-32 md:pt-40 pb-20 md:pb-28 px-5 md:px-6 relative">
+  <div class="absolute inset-0 grid-bg opacity-30"></div>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-10">
+      <p class="gold uppercase tracking-[5px] text-xs md:text-sm mb-4">Jogi információk</p>
+      <h1 class="text-4xl md:text-6xl font-black mb-4">Adatkezelési <span class="text-gradient">tájékoztató</span></h1>
+      <p class="text-gray-500 text-sm">Utolsó frissítés: 2026.</p>
+    </div>
 
-<h1 class="text-4xl md:text-5xl font-black mb-10">
-Adatkezelési Tájékoztató
-</h1>
+    <div class="glass-strong rounded-[28px] md:rounded-[35px] p-6 md:p-12 space-y-8 text-gray-300 leading-relaxed">
 
-<div class="space-y-10 text-gray-300 leading-relaxed">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gold-bg flex items-center justify-center text-black font-black">1</div>
+          <h2 class="text-xl md:text-2xl font-bold text-white">Adatkezelő adatai</h2>
+        </div>
+        <div class="glass rounded-2xl p-5 ml-13">
+          <p>VM Kerítés Mester<br>Szigetszentmiklós<br>Telefon: <a href="tel:+36309388484" class="gold hover:underline">+36 30 938 8484</a><br>E-mail: <a href="mailto:varga.mark@icloud.com" class="gold hover:underline">varga.mark@icloud.com</a></p>
+        </div>
+      </div>
 
-<div>
-<h2 class="text-2xl font-bold text-white mb-4">1. Adatkezelő adatai</h2>
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gold-bg flex items-center justify-center text-black font-black">2</div>
+          <h2 class="text-xl md:text-2xl font-bold text-white">Kezelt adatok köre</h2>
+        </div>
+        <p class="mb-3">Az oldal használata során az alábbi adatok kerülhetnek kezelésre:</p>
+        <div class="grid sm:grid-cols-2 gap-2">
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">✓</span> Név</div>
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">✓</span> Telefonszám</div>
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">✓</span> E-mail cím</div>
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">✓</span> Technikai adatok (cookie-k)</div>
+        </div>
+      </div>
 
-<p>
-VM Kerítés Mester<br>
-Szigetszentmiklós<br>
-Telefonszám: +36 30 938 8484
-</p>
-</div>
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gold-bg flex items-center justify-center text-black font-black">3</div>
+          <h2 class="text-xl md:text-2xl font-bold text-white">Az adatkezelés célja</h2>
+        </div>
+        <div class="space-y-2">
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">→</span> Kapcsolatfelvétel biztosítása</div>
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">→</span> Ajánlatadás</div>
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">→</span> Ügyfélkommunikáció</div>
+          <div class="glass rounded-xl p-3 flex items-center gap-3"><span class="gold">→</span> Weboldal működésének javítása</div>
+        </div>
+      </div>
 
-<div>
-<h2 class="text-2xl font-bold text-white mb-4">2. Kezelt adatok köre</h2>
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gold-bg flex items-center justify-center text-black font-black">4</div>
+          <h2 class="text-xl md:text-2xl font-bold text-white">Cookie-k használata</h2>
+        </div>
+        <p>A weboldal sütiket (cookie-kat) használ a megfelelő működés és a jobb felhasználói élmény érdekében.</p>
+      </div>
 
-<p>
-Az oldal használata során az alábbi adatok kerülhetnek kezelésre:
-</p>
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gold-bg flex items-center justify-center text-black font-black">5</div>
+          <h2 class="text-xl md:text-2xl font-bold text-white">Adatbiztonság</h2>
+        </div>
+        <p>Mindent megteszünk a személyes adatok biztonságos kezelése érdekében, és az adatokat harmadik fél számára nem értékesítjük.</p>
+      </div>
 
-<ul class="list-disc pl-6 mt-4 space-y-2">
-<li>Név</li>
-<li>Telefonszám</li>
-<li>E-mail cím</li>
-<li>Technikai adatok (cookie-k)</li>
-</ul>
-</div>
-
-<div>
-<h2 class="text-2xl font-bold text-white mb-4">3. Az adatkezelés célja</h2>
-
-<ul class="list-disc pl-6 space-y-2">
-<li>Kapcsolatfelvétel biztosítása</li>
-<li>Ajánlatadás</li>
-<li>Ügyfélkommunikáció</li>
-<li>Weboldal működésének javítása</li>
-</ul>
-</div>
-
-<div>
-<h2 class="text-2xl font-bold text-white mb-4">4. Cookie-k használata</h2>
-
-<p>
-A weboldal sütiket (cookie-kat) használ a megfelelő működés és a jobb felhasználói élmény érdekében.
-</p>
-</div>
-
-<div>
-<h2 class="text-2xl font-bold text-white mb-4">5. Adatbiztonság</h2>
-
-<p>
-Mindent megteszünk a személyes adatok biztonságos kezelése érdekében, és az adatokat harmadik fél számára nem értékesítjük.
-</p>
-</div>
-
-<div>
-<h2 class="text-2xl font-bold text-white mb-4">6. Kapcsolat</h2>
-
-<p>
-Amennyiben kérdésed van az adatkezeléssel kapcsolatban, az alábbi elérhetőségen tudsz kapcsolatba lépni velünk:
-</p>
-
-<p class="mt-4">
-Telefon: +36 30 938 8484
-</p>
-</div>
-
-</div>
-
-</div>
-
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl gold-bg flex items-center justify-center text-black font-black">6</div>
+          <h2 class="text-xl md:text-2xl font-bold text-white">Kapcsolat</h2>
+        </div>
+        <p class="mb-4">Amennyiben kérdésed van az adatkezeléssel kapcsolatban, az alábbi elérhetőségen tudsz kapcsolatba lépni:</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="tel:+36309388484" class="gold-bg text-black font-bold px-6 py-3 rounded-2xl hover:scale-105 transition flex items-center justify-center gap-2 shine">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +36 30 938 8484
+          </a>
+          <a href="mailto:varga.mark@icloud.com" class="glass px-6 py-3 rounded-2xl hover:bg-white/10 transition flex items-center justify-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            E-mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8 px-5 md:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <img src="./vm-logo.png" alt="VM logo" class="w-12 h-12 object-contain">
+          <h3 class="text-xl font-bold">VM Kerítés Mester</h3>
+        </div>
+        <p class="text-gray-500 leading-relaxed text-sm">Modern kerítések, betonpecsételés és prémium kivitelezés Szigetszentmiklóson és környékén.</p>
+      </div>
+      <div>
+        <h4 class="text-sm uppercase tracking-widest gold mb-5">Menü</h4>
+        <div class="space-y-3 text-gray-400 text-sm">
+          <a href="rolam.html" class="block hover:text-white transition">Rólam</a>
+          <a href="szolgaltatasok.html" class="block hover:text-white transition">Szolgáltatások</a>
+          <a href="referenciak.html" class="block hover:text-white transition">Referenciák</a>
+          <a href="kapcsolat.html" class="block hover:text-white transition">Kapcsolat</a>
+          <a href="adatvedelem.html" class="block hover:text-white transition">Adatkezelés</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-sm uppercase tracking-widest gold mb-5">Kapcsolat</h4>
+        <div class="space-y-3 text-gray-400 text-sm">
+          <a href="tel:+36309388484" class="block hover:text-white transition">📞 +36 30 938 8484</a>
+          <a href="mailto:varga.mark@icloud.com" class="block hover:text-white transition break-all">✉ varga.mark@icloud.com</a>
+          <p>📍 2310 Szigetszentmiklós</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-gray-500 text-xs">
+      <span>© 2026 VM Kerítés Mester — Minden jog fenntartva.</span>
+      <span>Szigetszentmiklós • Prémium kivitelezés</span>
+    </div>
+  </div>
+</footer>
 
 <script>
-
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-
-if(menuBtn){
-menuBtn.addEventListener('click', () => {
-mobileMenu.classList.toggle('hidden');
-});
-}
-
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
 </script>
 
 </body>
