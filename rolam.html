@@ -3,262 +3,388 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rólam - VM Kerítés Mester</title>
-
+<title>Rólam — Varga Márk · VM Kerítés Mester</title>
+<meta name="description" content="Varga Márk — mester kőműves, kerítésépítő. Több éves tapasztalat, prémium kivitelezés.">
 <script src="https://cdn.tailwindcss.com"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-background:#0d0f13;
-color:white;
-overflow-x:hidden;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-.glass{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.08);
-}
-
-.gold{
-color:#d4af37;
-}
-
-.gold-bg{
-background:#d4af37;
-}
-
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+  html{scroll-behavior:smooth}
+  body{background:#0a0c10;color:#fff;overflow-x:hidden}
+  .glass{background:rgba(255,255,255,.04);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08)}
+  .glass-strong{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+  .gold{color:#d4af37}
+  .gold-bg{background:linear-gradient(135deg,#e6c558 0%,#d4af37 50%,#b8941f 100%)}
+  .text-gradient{background:linear-gradient(135deg,#fff 0%,#d4af37 50%,#fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hover-card{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s ease}
+  .hover-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px -20px rgba(212,175,55,.25)}
+  .grid-bg{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.show{opacity:1;transform:translateY(0)}
+  .shine{position:relative;overflow:hidden}
+  .shine::before{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shine 3s ease-in-out infinite}
+  @keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#d4af37;transition:width .3s ease}
+  .nav-link{position:relative;transition:color .2s}
+  .nav-link:hover::after{width:100%}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;pointer-events:none}
+  .counter{font-variant-numeric:tabular-nums}
+  ::selection{background:#d4af37;color:#000}
 </style>
 </head>
-
 <body>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
-
-<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
-<a href="index.html" class="flex items-center gap-3">
-
-<img src="./vm-logo.png"
-class="w-12 h-12 object-contain">
-
-<div>
-<h2 class="font-bold text-lg tracking-wide">
-VM Kerítés Mester
-</h2>
-</div>
-
-</a>
-
-<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-
-<a href="index.html" class="hover:text-white transition">
-Főoldal
-</a>
-
-<a href="rolam.html" class="text-white">
-Rólam
-</a>
-
-<a href="referenciak.html" class="hover:text-white transition">
-Referenciák
-</a>
-
-<a href="szolgaltatasok.html" class="hover:text-white transition">
-Szolgáltatások
-</a>
-
-<a href="kapcsolat.html" class="hover:text-white transition">
-Kapcsolat
-</a>
-
-</nav>
-
-
-<!-- MOBILE BUTTON -->
-<button id="menuBtn" class="md:hidden text-white text-3xl">
-☰
-</button>
-
-
-<a href="tel:+36309388484"
-class="gold-bg text-black font-semibold px-5 py-3 rounded-2xl hidden md:block">
-Hívás
-</a>
-
-</div>
-
-
-<!-- MOBILE MENU -->
-<div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black/95">
-
-<div class="flex flex-col px-6 py-6 gap-5 text-gray-300 text-lg">
-
-<a href="index.html" class="hover:text-white transition">
-Főoldal
-</a>
-
-<a href="rolam.html" class="hover:text-white transition">
-Rólam
-</a>
-
-<a href="referenciak.html" class="hover:text-white transition">
-Referenciák
-</a>
-
-<a href="szolgaltatasok.html" class="hover:text-white transition">
-Szolgáltatások
-</a>
-
-<a href="kapcsolat.html" class="hover:text-white transition">
-Kapcsolat
-</a>
-
-<a href="tel:+36309388484"
-class="gold-bg text-black font-semibold px-5 py-4 rounded-2xl text-center mt-3">
-Hívás most
-</a>
-
-</div>
-
-</div>
-
-
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/50 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="./vm-logo.png" alt="VM logo" class="w-10 h-10 md:w-12 md:h-12 object-contain">
+      <div>
+        <h2 class="font-bold text-base md:text-lg tracking-wide leading-none">VM Kerítés Mester</h2>
+        <p class="text-[10px] md:text-xs text-gray-500 mt-1 tracking-widest uppercase">Szigetszentmiklós</p>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
+      <a href="index.html" class="nav-link hover:text-white">Főoldal</a>
+      <a href="rolam.html" class="nav-link text-white">Rólam</a>
+      <a href="referenciak.html" class="nav-link hover:text-white">Referenciák</a>
+      <a href="szolgaltatasok.html" class="nav-link hover:text-white">Szolgáltatások</a>
+      <a href="kapcsolat.html" class="nav-link hover:text-white">Kapcsolat</a>
+    </nav>
+    <a href="tel:+36309388484" class="gold-bg text-black font-semibold px-4 md:px-5 py-2.5 md:py-3 rounded-2xl hidden md:flex items-center gap-2 shine">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Hívás
+    </a>
+    <button id="menuBtn" aria-label="Menü" class="md:hidden text-white p-2">
+      <svg id="menuIconOpen" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg id="menuIconClose" class="hidden" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black/95">
+    <div class="flex flex-col px-6 py-6 gap-4 text-gray-300 text-lg">
+      <a href="index.html" class="hover:text-white py-2">Főoldal</a>
+      <a href="rolam.html" class="text-white py-2">Rólam</a>
+      <a href="referenciak.html" class="hover:text-white py-2">Referenciák</a>
+      <a href="szolgaltatasok.html" class="hover:text-white py-2">Szolgáltatások</a>
+      <a href="kapcsolat.html" class="hover:text-white py-2">Kapcsolat</a>
+      <a href="tel:+36309388484" class="gold-bg text-black font-semibold px-5 py-4 rounded-2xl text-center mt-2">📞 Hívás most</a>
+    </div>
+  </div>
 </header>
 
-<section class="py-40 px-6">
-
-<div class="max-w-6xl mx-auto">
-
-<div class="text-center mb-20">
-
-<p class="gold uppercase tracking-[5px] text-sm mb-4">
-Rólam
-</p>
-
-<h1 class="text-5xl md:text-7xl font-black">
-Varga Márk
-</h1>
-
-</div>
-
-<div class="glass rounded-[35px] p-8 md:p-14">
-
-<div class="grid lg:grid-cols-2 gap-14 items-start">
-
-<div>
-
-<img src="./varga-mark.jpg"
-class="rounded-[30px] w-full object-cover shadow-2xl">
-
-</div>
-
-<div class="space-y-8 text-gray-300 leading-relaxed text-lg">
-
-<p>
-Üdvözlöm! Varga Márk vagyok, és egy elhatározott, elszánt embernek tartom magam, aki folyamatosan keresi az újításokat és a fejlődési lehetőségeket.
-</p>
-
-<p>
-Kisgyermek korom óta vonzott a kőműves mesterség, így nem volt kérdés számomra, hogy ezen az úton szeretném felépíteni a karrieremet. Több éves tapasztalattal rendelkezem kerítésépítésben, térburkolásban, házépítésben és egyéb kőműves munkákban.
-</p>
-
-<p>
-Az évek során rengeteg projektben vettem részt, amelyek során olyan szakmai tapasztalatot szereztem, amit ma a megrendelőim javára tudok fordítani. Folyamatosan képeztem magam, hogy a lehető legmagasabb színvonalú szolgáltatást nyújthassam.
-</p>
-
-<p>
-A betonnyomat és falbélyegzés technológiájával megismerkedve egy teljesen új világ nyílt meg előttem. A kreativitás, az egyedi megoldások és a prémium kivitelezés számomra nem extra szolgáltatás, hanem alapelv.
-</p>
-
-<p>
-A technológiával kombinálva a természet különböző formáit és színeit reprodukálhatom betonra vagy falra, ami rengeteg új lehetőséget nyitott meg számomra és az ügyfeleim számára is.
-</p>
-
-<div class="grid sm:grid-cols-2 gap-5 pt-4">
-
-<a href="https://www.facebook.com/vmkeritesmester"
-target="_blank"
-class="gold-bg text-black font-bold px-6 py-4 rounded-2xl text-center hover:scale-105 transition">
-Facebook oldal
-</a>
-
-<a href="https://www.tiktok.com/@keritesmester"
-target="_blank"
-class="glass px-6 py-4 rounded-2xl text-center hover:bg-white/10 transition">
-TikTok megnyitása
-</a>
-
-</div>
-
-<div class="glass rounded-2xl p-6 mt-8">
-
-<p class="italic text-gray-300 leading-relaxed">
-„A szakemberek és mesterek az elköteleződésükkel, kitartásukkal és a munkájuk iránti szenvedéllyel emelkednek ki. Számomra minden projekt lehetőség arra, hogy maradandót alkossak.”
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<!-- HEADER -->
+<section class="pt-32 md:pt-40 pb-12 md:pb-16 px-5 md:px-6 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="blob gold-bg" style="width:500px;height:500px;top:-150px;left:-150px"></div>
+  <div class="max-w-6xl mx-auto text-center relative z-10 reveal">
+    <p class="gold uppercase tracking-[5px] text-xs md:text-sm mb-4">Rólam</p>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black mb-4 leading-tight">Varga <span class="text-gradient">Márk</span></h1>
+    <p class="text-gray-400 text-base md:text-xl max-w-2xl mx-auto leading-relaxed">Mester kőműves · Kerítésépítő · Prémium kivitelezés</p>
+  </div>
 </section>
 
-<footer class="border-t border-white/10">
+<!-- PROFILE + BIO -->
+<section class="px-5 md:px-6 pb-16 md:pb-20">
+  <div class="max-w-6xl mx-auto">
+    <div class="glass-strong rounded-[28px] md:rounded-[40px] p-6 md:p-10 lg:p-14 reveal">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
+        <div class="relative">
+          <img src="./varga-mark.jpg" alt="Varga Márk" class="rounded-[28px] w-full aspect-[4/5] object-cover shadow-2xl">
+          <!-- Floating badge -->
+          <div class="absolute -bottom-5 -right-3 md:-right-5 glass-strong rounded-2xl px-5 py-3 flex items-center gap-3 shadow-2xl">
+            <div class="w-10 h-10 rounded-full gold-bg flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 uppercase tracking-wider">Mester</p>
+              <p class="font-bold text-sm">VM Kerítés Mester</p>
+            </div>
+          </div>
+        </div>
 
-<div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-6">
+        <div class="space-y-6 text-gray-300 leading-relaxed text-base md:text-lg">
+          <p>Üdvözlöm! <span class="gold font-semibold">Varga Márk</span> vagyok, és egy elhatározott, elszánt embernek tartom magam, aki folyamatosan keresi az újításokat és a fejlődési lehetőségeket.</p>
+          <p>Kisgyermek korom óta vonzott a kőműves mesterség, így nem volt kérdés számomra, hogy ezen az úton szeretném felépíteni a karrieremet. Több éves tapasztalattal rendelkezem kerítésépítésben, térburkolásban, házépítésben és egyéb kőműves munkákban.</p>
+          <p>A <span class="gold font-semibold">betonnyomat és falbélyegzés</span> technológiájával megismerkedve egy teljesen új világ nyílt meg előttem. A kreativitás, az egyedi megoldások és a prémium kivitelezés számomra nem extra szolgáltatás, hanem alapelv.</p>
 
-<div>
-<h3 class="text-2xl font-bold">
-VM Kerítés Mester
-</h3>
+          <div class="grid sm:grid-cols-2 gap-3 pt-2">
+            <a href="https://www.facebook.com/vmkeritesmester" target="_blank" rel="noopener" class="gold-bg text-black font-bold px-5 py-3.5 rounded-2xl text-center hover:scale-105 transition flex items-center justify-center gap-2 shine">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.tiktok.com/@keritesmester" target="_blank" rel="noopener" class="glass px-5 py-3.5 rounded-2xl text-center hover:bg-white/10 transition flex items-center justify-center gap-2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.62a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.05z"/></svg>
+              TikTok
+            </a>
+          </div>
+        </div>
+      </div>
 
-<p class="text-gray-500 mt-3">
-Szigetszentmiklós • Prémium kivitelezés
-</p>
-</div>
+      <!-- Quote -->
+      <div class="mt-10 md:mt-14 glass rounded-2xl p-6 md:p-8 border-l-4 border-yellow-500">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="#d4af37" class="mb-3 opacity-60"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h2v1c0 2-1 4-3 5zm12 0c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h2v1c0 2-1 4-3 5z"/></svg>
+        <p class="italic text-gray-200 leading-relaxed text-base md:text-xl">A szakemberek és mesterek az elköteleződésükkel, kitartásukkal és a munkájuk iránti szenvedéllyel emelkednek ki. Számomra minden projekt lehetőség arra, hogy <span class="gold">maradandót alkossak</span>.</p>
+        <p class="text-gray-500 text-sm mt-4">— Varga Márk</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="text-gray-500">
-© 2026 Minden jog fenntartva.
-</div>
+<!-- STATS -->
+<section class="py-16 md:py-20 px-5 md:px-6 bg-black/30">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+      <div class="glass rounded-2xl p-5 md:p-7 text-center hover-card reveal">
+        <div class="text-3xl md:text-5xl font-black gold counter mb-2" data-target="10">0</div>
+        <div class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Év tapasztalat</div>
+      </div>
+      <div class="glass rounded-2xl p-5 md:p-7 text-center hover-card reveal">
+        <div class="text-3xl md:text-5xl font-black gold mb-2"><span class="counter" data-target="150">0</span>+</div>
+        <div class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Projekt</div>
+      </div>
+      <div class="glass rounded-2xl p-5 md:p-7 text-center hover-card reveal">
+        <div class="text-3xl md:text-5xl font-black gold mb-2"><span class="counter" data-target="100">0</span>%</div>
+        <div class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Elégedettség</div>
+      </div>
+      <div class="glass rounded-2xl p-5 md:p-7 text-center hover-card reveal">
+        <div class="text-3xl md:text-5xl font-black gold mb-2"><span class="counter" data-target="3">0</span></div>
+        <div class="text-xs md:text-sm text-gray-400 uppercase tracking-wider">Fő szakterület</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- SKILLS / EXPERTISE RADAR -->
+<section class="py-20 md:py-28 px-5 md:px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 md:mb-20 reveal">
+      <p class="gold uppercase tracking-[5px] text-xs md:text-sm mb-4">Szakterületek</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black">Amiben <span class="text-gradient">erős vagyok</span></h2>
+    </div>
 
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <!-- Radar chart (SVG) -->
+      <div class="reveal flex justify-center">
+        <svg viewBox="0 0 400 400" class="w-full max-w-md">
+          <!-- background polygons -->
+          <g stroke="rgba(255,255,255,.08)" fill="none" stroke-width="1">
+            <polygon points="200,40 339,135 286,300 114,300 61,135"/>
+            <polygon points="200,80 309,150 257,275 143,275 91,150"/>
+            <polygon points="200,120 279,165 229,250 171,250 121,165"/>
+            <polygon points="200,160 249,180 200,225 200,225 151,180"/>
+          </g>
+          <!-- axes -->
+          <g stroke="rgba(255,255,255,.05)" stroke-width="1">
+            <line x1="200" y1="200" x2="200" y2="40"/>
+            <line x1="200" y1="200" x2="339" y2="135"/>
+            <line x1="200" y1="200" x2="286" y2="300"/>
+            <line x1="200" y1="200" x2="114" y2="300"/>
+            <line x1="200" y1="200" x2="61" y2="135"/>
+          </g>
+          <!-- skill polygon -->
+          <polygon points="200,50 329,140 280,290 120,290 71,140" fill="url(#grad)" fill-opacity=".4" stroke="#d4af37" stroke-width="2"/>
+          <!-- dots -->
+          <circle cx="200" cy="50" r="5" fill="#d4af37"/>
+          <circle cx="329" cy="140" r="5" fill="#d4af37"/>
+          <circle cx="280" cy="290" r="5" fill="#d4af37"/>
+          <circle cx="120" cy="290" r="5" fill="#d4af37"/>
+          <circle cx="71" cy="140" r="5" fill="#d4af37"/>
+          <!-- labels -->
+          <g font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#fff">
+            <text x="200" y="25" text-anchor="middle">Kerítés</text>
+            <text x="355" y="130" text-anchor="middle">Beton</text>
+            <text x="295" y="325" text-anchor="middle">Burkolás</text>
+            <text x="105" y="325" text-anchor="middle">Falazás</text>
+            <text x="45" y="130" text-anchor="middle">Egyedi</text>
+          </g>
+          <defs>
+            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#e6c558"/>
+              <stop offset="100%" stop-color="#d4af37"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="space-y-5 reveal">
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="text-gray-300">Kerítés építés</span><span class="gold font-bold">95%</span></div>
+          <div class="h-2.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full gold-bg rounded-full skill-bar" data-width="95"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="text-gray-300">Betonpecsételés · pecsétbeton</span><span class="gold font-bold">98%</span></div>
+          <div class="h-2.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full gold-bg rounded-full skill-bar" data-width="98"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="text-gray-300">Térburkolás</span><span class="gold font-bold">90%</span></div>
+          <div class="h-2.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full gold-bg rounded-full skill-bar" data-width="90"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="text-gray-300">Falazás · kőműves munkák</span><span class="gold font-bold">92%</span></div>
+          <div class="h-2.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full gold-bg rounded-full skill-bar" data-width="92"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-2"><span class="text-gray-300">Egyedi tervezés</span><span class="gold font-bold">88%</span></div>
+          <div class="h-2.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full gold-bg rounded-full skill-bar" data-width="88"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="py-20 md:py-28 px-5 md:px-6 bg-black/30">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 md:mb-20 reveal">
+      <p class="gold uppercase tracking-[5px] text-xs md:text-sm mb-4">Értékek</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black">Ahogyan dolgozom</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass rounded-3xl p-7 hover-card reveal">
+        <div class="w-14 h-14 rounded-2xl gold-bg flex items-center justify-center mb-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Megbízhatóság</h4>
+        <p class="text-gray-400 leading-relaxed text-sm">Amit megígérek, betartom. Határidőre, megbeszélt áron.</p>
+      </div>
+      <div class="glass rounded-3xl p-7 hover-card reveal">
+        <div class="w-14 h-14 rounded-2xl gold-bg flex items-center justify-center mb-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Szenvedély</h4>
+        <p class="text-gray-400 leading-relaxed text-sm">Nem munka, hivatás. Minden projektbe szívvel-lélekkel állok bele.</p>
+      </div>
+      <div class="glass rounded-3xl p-7 hover-card reveal">
+        <div class="w-14 h-14 rounded-2xl gold-bg flex items-center justify-center mb-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Pontosság</h4>
+        <p class="text-gray-400 leading-relaxed text-sm">Részletek. Minden milliméter, minden szegély gondosan kidolgozva.</p>
+      </div>
+      <div class="glass rounded-3xl p-7 hover-card reveal">
+        <div class="w-14 h-14 rounded-2xl gold-bg flex items-center justify-center mb-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Minőség</h4>
+        <p class="text-gray-400 leading-relaxed text-sm">Csak prémium anyagok és bevált technológiák. Évekre szóló munka.</p>
+      </div>
+      <div class="glass rounded-3xl p-7 hover-card reveal">
+        <div class="w-14 h-14 rounded-2xl gold-bg flex items-center justify-center mb-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Folyamatos kommunikáció</h4>
+        <p class="text-gray-400 leading-relaxed text-sm">A kivitelezés alatt mindvégig elérhető vagyok, kérdésekkel bármikor.</p>
+      </div>
+      <div class="glass rounded-3xl p-7 hover-card reveal">
+        <div class="w-14 h-14 rounded-2xl gold-bg flex items-center justify-center mb-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Garancia</h4>
+        <p class="text-gray-400 leading-relaxed text-sm">Minden munkára teljes körű garanciát vállalok. Utánkövetés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 md:py-28 px-5 md:px-6 relative overflow-hidden">
+  <div class="blob gold-bg" style="width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <div class="max-w-4xl mx-auto text-center relative z-10 reveal">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">Dolgozzunk együtt</h2>
+    <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">Egy hívás, egy felmérés — és máris konkrétumokat tudok adni.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="tel:+36309388484" class="gold-bg text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition shine inline-flex items-center justify-center gap-2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +36 30 938 8484
+      </a>
+      <a href="kapcsolat.html" class="glass-strong px-8 py-4 rounded-2xl hover:bg-white/10 transition">Üzenet küldése</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8 px-5 md:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <img src="./vm-logo.png" alt="VM logo" class="w-12 h-12 object-contain">
+          <h3 class="text-xl font-bold">VM Kerítés Mester</h3>
+        </div>
+        <p class="text-gray-500 leading-relaxed text-sm">Modern kerítések, betonpecsételés és prémium kivitelezés Szigetszentmiklóson és környékén.</p>
+      </div>
+      <div>
+        <h4 class="text-sm uppercase tracking-widest gold mb-5">Menü</h4>
+        <div class="space-y-3 text-gray-400 text-sm">
+          <a href="rolam.html" class="block hover:text-white transition">Rólam</a>
+          <a href="szolgaltatasok.html" class="block hover:text-white transition">Szolgáltatások</a>
+          <a href="referenciak.html" class="block hover:text-white transition">Referenciák</a>
+          <a href="kapcsolat.html" class="block hover:text-white transition">Kapcsolat</a>
+          <a href="adatvedelem.html" class="block hover:text-white transition">Adatkezelés</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-sm uppercase tracking-widest gold mb-5">Kapcsolat</h4>
+        <div class="space-y-3 text-gray-400 text-sm">
+          <a href="tel:+36309388484" class="block hover:text-white transition">📞 +36 30 938 8484</a>
+          <a href="mailto:varga.mark@icloud.com" class="block hover:text-white transition break-all">✉ varga.mark@icloud.com</a>
+          <p>📍 2310 Szigetszentmiklós</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-gray-500 text-xs">
+      <span>© 2026 VM Kerítés Mester — Minden jog fenntartva.</span>
+      <span>Szigetszentmiklós • Prémium kivitelezés</span>
+    </div>
+  </div>
 </footer>
 
-
 <script>
-
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-
-if(menuBtn){
-menuBtn.addEventListener('click', () => {
-mobileMenu.classList.toggle('hidden');
-});
-}
-
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Counter
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      const dur = 1400;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.floor(eased * target).toLocaleString('hu-HU');
+        if (t < 1) requestAnimationFrame(step); else el.textContent = target.toLocaleString('hu-HU');
+      };
+      requestAnimationFrame(step);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(c => counterIO.observe(c));
+  // Skill bars
+  const barIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const b = e.target;
+      b.style.width = '0%';
+      requestAnimationFrame(() => { b.style.transition = 'width 1.4s cubic-bezier(.16,1,.3,1)'; b.style.width = b.dataset.width + '%'; });
+      barIO.unobserve(b);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.skill-bar').forEach(b => barIO.observe(b));
 </script>
 
 </body>
