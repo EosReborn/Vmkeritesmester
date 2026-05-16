@@ -3,267 +3,393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Referenciák - VM Kerítés Mester</title>
-
+<title>Referenciák — VM Kerítés Mester</title>
+<meta name="description" content="Befejezett munkák galériája — modern kerítések, térburkolás, kőműves munkák.">
 <script src="https://cdn.tailwindcss.com"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-background:#0d0f13;
-color:white;
-overflow-x:hidden;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-.glass{
-background:rgba(255,255,255,.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.08);
-}
-
-.gold{
-color:#d4af37;
-}
-
-.gold-bg{
-background:#d4af37;
-}
-
-.gallery img{
-transition:.3s ease;
-}
-
-.gallery img:hover{
-transform:scale(1.03);
-}
-
-.hover-card{
-transition:.3s ease;
-}
-
-.hover-card:hover{
-transform:translateY(-8px);
-}
-
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+  html{scroll-behavior:smooth}
+  body{background:#0a0c10;color:#fff;overflow-x:hidden}
+  .glass{background:rgba(255,255,255,.04);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08)}
+  .glass-strong{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+  .gold{color:#d4af37}
+  .gold-bg{background:linear-gradient(135deg,#e6c558 0%,#d4af37 50%,#b8941f 100%)}
+  .text-gradient{background:linear-gradient(135deg,#fff 0%,#d4af37 50%,#fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hover-card{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s ease}
+  .hover-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px -20px rgba(212,175,55,.25)}
+  .grid-bg{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.show{opacity:1;transform:translateY(0)}
+  .shine{position:relative;overflow:hidden}
+  .shine::before{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shine 3s ease-in-out infinite}
+  @keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#d4af37;transition:width .3s ease}
+  .nav-link{position:relative;transition:color .2s}
+  .nav-link:hover::after{width:100%}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;pointer-events:none}
+  ::selection{background:#d4af37;color:#000}
+  .filter-btn{transition:all .2s ease}
+  .filter-btn.active{background:linear-gradient(135deg,#e6c558,#d4af37,#b8941f);color:#000;font-weight:700}
+  .gallery-item{transition:opacity .4s ease,transform .4s ease}
+  .gallery-item.hidden-item{opacity:0;transform:scale(.9);pointer-events:none;display:none}
+  /* lightbox */
+  #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:100;display:none;align-items:center;justify-content:center;padding:1rem}
+  #lightbox.open{display:flex}
+  #lightbox img{max-width:90vw;max-height:85vh;border-radius:1rem;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  #lightboxClose,#lightboxPrev,#lightboxNext{position:absolute;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:9999px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+  #lightboxClose:hover,#lightboxPrev:hover,#lightboxNext:hover{background:rgba(255,255,255,.2)}
+  #lightboxClose{top:1.5rem;right:1.5rem}
+  #lightboxPrev{left:1.5rem;top:50%;transform:translateY(-50%)}
+  #lightboxNext{right:1.5rem;top:50%;transform:translateY(-50%)}
+  @media (max-width:640px){#lightboxPrev{left:.5rem}#lightboxNext{right:.5rem}}
 </style>
 </head>
-
 <body>
 
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
-
-<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
-<a href="index.html" class="flex items-center gap-3">
-
-<img src="./vm-logo.png"
-class="w-12 h-12 object-contain">
-
-<div>
-<h2 class="font-bold text-lg tracking-wide">
-VM Kerítés Mester
-</h2>
-</div>
-
-</a>
-
-<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-
-<a href="index.html" class="hover:text-white transition">
-Főoldal
-</a>
-
-<a href="rolam.html" class="hover:text-white transition">
-Rólam
-</a>
-
-<a href="referenciak.html" class="text-white">
-Referenciák
-</a>
-
-<a href="szolgaltatasok.html" class="hover:text-white transition">
-Szolgáltatások
-</a>
-
-<a href="kapcsolat.html" class="hover:text-white transition">
-Kapcsolat
-</a>
-
-</nav>
-
-
-<!-- MOBILE BUTTON -->
-<button id="menuBtn" class="md:hidden text-white text-3xl">
-☰
-</button>
-
-
-<a href="tel:+36309388484"
-class="gold-bg text-black font-semibold px-5 py-3 rounded-2xl hidden md:block">
-Hívás
-</a>
-
-</div>
-
-
-<!-- MOBILE MENU -->
-<div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black/95">
-
-<div class="flex flex-col px-6 py-6 gap-5 text-gray-300 text-lg">
-
-<a href="index.html" class="hover:text-white transition">
-Főoldal
-</a>
-
-<a href="rolam.html" class="hover:text-white transition">
-Rólam
-</a>
-
-<a href="referenciak.html" class="hover:text-white transition">
-Referenciák
-</a>
-
-<a href="szolgaltatasok.html" class="hover:text-white transition">
-Szolgáltatások
-</a>
-
-<a href="kapcsolat.html" class="hover:text-white transition">
-Kapcsolat
-</a>
-
-<a href="tel:+36309388484"
-class="gold-bg text-black font-semibold px-5 py-4 rounded-2xl text-center mt-3">
-Hívás most
-</a>
-
-</div>
-
-</div>
-
-
+<!-- NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/50 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-6 py-3 md:py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="./vm-logo.png" alt="VM logo" class="w-10 h-10 md:w-12 md:h-12 object-contain">
+      <div>
+        <h2 class="font-bold text-base md:text-lg tracking-wide leading-none">VM Kerítés Mester</h2>
+        <p class="text-[10px] md:text-xs text-gray-500 mt-1 tracking-widest uppercase">Szigetszentmiklós</p>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
+      <a href="index.html" class="nav-link hover:text-white">Főoldal</a>
+      <a href="rolam.html" class="nav-link hover:text-white">Rólam</a>
+      <a href="referenciak.html" class="nav-link text-white">Referenciák</a>
+      <a href="szolgaltatasok.html" class="nav-link hover:text-white">Szolgáltatások</a>
+      <a href="kapcsolat.html" class="nav-link hover:text-white">Kapcsolat</a>
+    </nav>
+    <a href="tel:+36309388484" class="gold-bg text-black font-semibold px-4 md:px-5 py-2.5 md:py-3 rounded-2xl hidden md:flex items-center gap-2 shine">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Hívás
+    </a>
+    <button id="menuBtn" aria-label="Menü" class="md:hidden text-white p-2">
+      <svg id="menuIconOpen" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg id="menuIconClose" class="hidden" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black/95">
+    <div class="flex flex-col px-6 py-6 gap-4 text-gray-300 text-lg">
+      <a href="index.html" class="hover:text-white py-2">Főoldal</a>
+      <a href="rolam.html" class="hover:text-white py-2">Rólam</a>
+      <a href="referenciak.html" class="text-white py-2">Referenciák</a>
+      <a href="szolgaltatasok.html" class="hover:text-white py-2">Szolgáltatások</a>
+      <a href="kapcsolat.html" class="hover:text-white py-2">Kapcsolat</a>
+      <a href="tel:+36309388484" class="gold-bg text-black font-semibold px-5 py-4 rounded-2xl text-center mt-2">📞 Hívás most</a>
+    </div>
+  </div>
 </header>
 
-<section class="py-40 px-6">
-
-<div class="max-w-7xl mx-auto">
-
-<div class="text-center mb-20">
-
-<p class="gold uppercase tracking-[5px] text-sm mb-4">
-Referenciák
-</p>
-
-<h1 class="text-5xl md:text-7xl font-black">
-Munkáinkból
-</h1>
-
-<p class="text-gray-400 text-xl max-w-3xl mx-auto mt-8 leading-relaxed">
-Válogatás az elkészült munkákból. Valódi kivitelezések, modern megoldások és igényes részletek.
-</p>
-
-</div>
-
-<div class="grid md:grid-cols-3 gap-6 gallery">
-
-<img src="./kep1.JPG"
-class="rounded-3xl h-96 w-full object-cover shadow-2xl">
-
-<img src="./kep2.JPG"
-class="rounded-3xl h-96 w-full object-cover shadow-2xl">
-
-<img src="./kep3.JPG"
-class="rounded-3xl h-96 w-full object-cover shadow-2xl">
-
-<img src="./kep4.JPG"
-class="rounded-3xl h-96 w-full object-cover shadow-2xl">
-
-<img src="./kep5.JPG"
-class="rounded-3xl h-96 w-full object-cover shadow-2xl">
-
-<img src="./kep6.JPG"
-class="rounded-3xl h-96 w-full object-cover shadow-2xl">
-
-</div>
-
-<div class="glass rounded-[35px] p-8 md:p-12 mt-16 text-center hover-card">
-
-<h2 class="text-3xl md:text-5xl font-black mb-6">
-További munkák a Facebook oldalon
-</h2>
-
-<p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-A fotógaléria folyamatosan bővül. A legfrissebb munkákat, videókat és kivitelezéseket a Facebook oldalon lehet megtekinteni.
-</p>
-
-<div class="flex flex-col sm:flex-row justify-center gap-5">
-
-<a href="https://www.facebook.com/vmkeritesmester"
-target="_blank"
-class="gold-bg text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition">
-Facebook oldal megnyitása
-</a>
-
-<a href="kapcsolat.html"
-class="glass px-8 py-4 rounded-2xl hover:bg-white/10 transition">
-Ajánlatot kérek
-</a>
-
-</div>
-
-</div>
-
-</div>
-
+<!-- HEADER -->
+<section class="pt-32 md:pt-40 pb-12 md:pb-16 px-5 md:px-6 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="blob gold-bg" style="width:500px;height:500px;top:-150px;right:-150px"></div>
+  <div class="max-w-6xl mx-auto text-center relative z-10 reveal">
+    <p class="gold uppercase tracking-[5px] text-xs md:text-sm mb-4">Referenciák</p>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black mb-6 leading-tight">Munkáink <span class="text-gradient">közel</span></h1>
+    <p class="text-gray-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed">Válogatás az elkészült projektekből. Valódi kivitelezések, modern megoldások, igényes részletek.</p>
+  </div>
 </section>
 
-<footer class="border-t border-white/10">
+<!-- STATS -->
+<section class="px-5 md:px-6 pb-8">
+  <div class="max-w-6xl mx-auto grid grid-cols-3 gap-3 md:gap-5">
+    <div class="glass rounded-2xl p-4 md:p-6 text-center hover-card reveal">
+      <div class="text-2xl md:text-4xl font-black gold counter" data-target="150">0</div>
+      <div class="text-[10px] md:text-xs text-gray-400 mt-1 uppercase tracking-wider">Befejezett</div>
+    </div>
+    <div class="glass rounded-2xl p-4 md:p-6 text-center hover-card reveal">
+      <div class="text-2xl md:text-4xl font-black gold counter" data-target="10">0</div>
+      <div class="text-[10px] md:text-xs text-gray-400 mt-1 uppercase tracking-wider">Évnyi munka</div>
+    </div>
+    <div class="glass rounded-2xl p-4 md:p-6 text-center hover-card reveal">
+      <div class="text-2xl md:text-4xl font-black gold"><span class="counter" data-target="100">0</span>%</div>
+      <div class="text-[10px] md:text-xs text-gray-400 mt-1 uppercase tracking-wider">Elégedettség</div>
+    </div>
+  </div>
+</section>
 
-<div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-6">
+<!-- FILTER -->
+<section class="px-5 md:px-6 py-10 md:py-14">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-wrap justify-center gap-2 md:gap-3 reveal">
+      <button class="filter-btn active glass px-5 py-2.5 rounded-full text-sm md:text-base" data-filter="all">Összes</button>
+      <button class="filter-btn glass px-5 py-2.5 rounded-full text-sm md:text-base" data-filter="kerites">Kerítés</button>
+      <button class="filter-btn glass px-5 py-2.5 rounded-full text-sm md:text-base" data-filter="komuves">Kőműves</button>
+      <button class="filter-btn glass px-5 py-2.5 rounded-full text-sm md:text-base" data-filter="terburkolas">Térburkolás</button>
+    </div>
+  </div>
+</section>
 
-<div>
-<h3 class="text-2xl font-bold">
-VM Kerítés Mester
-</h3>
+<!-- GALLERY -->
+<section class="px-5 md:px-6 pb-20 md:pb-28">
+  <div class="max-w-7xl mx-auto">
+    <div id="galleryGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
 
-<p class="text-gray-500 mt-3">
-Szigetszentmiklós • Prémium kivitelezés
-</p>
+      <div class="gallery-item relative aspect-[4/3] rounded-2xl overflow-hidden group hover-card cursor-pointer reveal" data-cat="kerites" data-src="./kep1.JPG" data-title="Modern léckerítés" data-desc="Szürke léckerítés stone bázissal — Szigetszentmiklós">
+        <img src="./kep1.JPG" alt="Modern léckerítés" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <div class="absolute top-4 left-4">
+          <span class="glass px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider gold">Kerítés</span>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <h3 class="text-lg md:text-xl font-bold mb-1">Modern léckerítés</h3>
+          <p class="text-gray-300 text-xs md:text-sm">Szigetszentmiklós · 2024</p>
+        </div>
+        <div class="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-item relative aspect-[4/3] rounded-2xl overflow-hidden group hover-card cursor-pointer reveal" data-cat="komuves" data-src="./kep2.JPG" data-title="Kandalló kőburkolat" data-desc="Egyedi kőburkolatos kandalló kivitelezés">
+        <img src="./kep2.JPG" alt="Kandalló kőburkolat" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <div class="absolute top-4 left-4">
+          <span class="glass px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider gold">Kőműves</span>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <h3 class="text-lg md:text-xl font-bold mb-1">Kandalló kőburkolat</h3>
+          <p class="text-gray-300 text-xs md:text-sm">Egyedi belsőépítészeti munka</p>
+        </div>
+        <div class="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-item relative aspect-[4/3] rounded-2xl overflow-hidden group hover-card cursor-pointer reveal" data-cat="kerites" data-src="./kep3.JPG" data-title="Panel kerítés kőoszlopokkal" data-desc="WPC paneles kerítés természetes kő pillérekkel">
+        <img src="./kep3.JPG" alt="Panel kerítés" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <div class="absolute top-4 left-4">
+          <span class="glass px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider gold">Kerítés</span>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <h3 class="text-lg md:text-xl font-bold mb-1">Panel kerítés kőoszlopokkal</h3>
+          <p class="text-gray-300 text-xs md:text-sm">WPC + természetes kő · 2024</p>
+        </div>
+        <div class="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-item relative aspect-[4/3] rounded-2xl overflow-hidden group hover-card cursor-pointer reveal" data-cat="kerites" data-src="./kep4.JPG" data-title="Kőkerítés pilléres rendszerrel" data-desc="Beton-kő kombinált pilléres kerítés">
+        <img src="./kep4.JPG" alt="Kőkerítés" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <div class="absolute top-4 left-4">
+          <span class="glass px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider gold">Kerítés</span>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <h3 class="text-lg md:text-xl font-bold mb-1">Kőkerítés pillérekkel</h3>
+          <p class="text-gray-300 text-xs md:text-sm">Tömör pilléres rendszer · 2024</p>
+        </div>
+        <div class="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </div>
+      </div>
+
+      <div class="gallery-item relative aspect-[4/3] rounded-2xl overflow-hidden group hover-card cursor-pointer reveal" data-cat="kerites" data-src="./kep1.JPG" data-title="Slatted modern kerítés" data-desc="Vízszintes lemezsávos szürke kerítés">
+        <img src="./kep1.JPG" alt="Slatted kerítés" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <div class="absolute top-4 left-4">
+          <span class="glass px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider gold">Kerítés</span>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <h3 class="text-lg md:text-xl font-bold mb-1">Slatted modern kerítés</h3>
+          <p class="text-gray-300 text-xs md:text-sm">Egyedi lemezfém kerítés</p>
+        </div>
+      </div>
+
+      <div class="gallery-item relative aspect-[4/3] rounded-2xl overflow-hidden group hover-card cursor-pointer reveal" data-cat="komuves" data-src="./kep4.JPG" data-title="Pilléres falazás" data-desc="Tömör beton-kő pillérek precíz kivitelben">
+        <img src="./kep4.JPG" alt="Pilléres falazás" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <div class="absolute top-4 left-4">
+          <span class="glass px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider gold">Kőműves</span>
+        </div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <h3 class="text-lg md:text-xl font-bold mb-1">Pilléres falazás</h3>
+          <p class="text-gray-300 text-xs md:text-sm">Tömör pilléres rendszer</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Facebook callout -->
+    <div class="glass-strong rounded-[35px] p-8 md:p-14 mt-14 md:mt-20 text-center hover-card reveal relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-40 h-40 gold-bg rounded-full opacity-20 blur-3xl"></div>
+      <div class="absolute -bottom-12 -left-12 w-40 h-40 gold-bg rounded-full opacity-20 blur-3xl"></div>
+      <div class="relative z-10">
+        <p class="gold uppercase tracking-[4px] text-xs mb-4">További munkák</p>
+        <h2 class="text-3xl md:text-5xl font-black mb-6">A galéria <span class="text-gradient">folyamatosan bővül</span></h2>
+        <p class="text-gray-400 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">A legfrissebb projekteket, videókat és kivitelezéseket a közösségi oldalakon teszem közzé.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="https://www.facebook.com/vmkeritesmester" target="_blank" rel="noopener" class="gold-bg text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition shine inline-flex items-center justify-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook megnyitása
+          </a>
+          <a href="kapcsolat.html" class="glass-strong px-8 py-4 rounded-2xl hover:bg-white/10 transition">Ajánlatot kérek</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-label="Kép nézet">
+  <button id="lightboxClose" aria-label="Bezárás">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  </button>
+  <button id="lightboxPrev" aria-label="Előző">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="flex flex-col items-center gap-4">
+    <img id="lightboxImg" src="" alt="">
+    <div class="text-center max-w-lg">
+      <h4 id="lightboxTitle" class="text-lg md:text-xl font-bold"></h4>
+      <p id="lightboxDesc" class="text-gray-400 text-sm mt-1"></p>
+    </div>
+  </div>
+  <button id="lightboxNext" aria-label="Következő">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
 </div>
 
-<div class="text-gray-500">
-© 2026 Minden jog fenntartva.
-</div>
-
-</div>
-
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8 px-5 md:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <img src="./vm-logo.png" alt="VM logo" class="w-12 h-12 object-contain">
+          <h3 class="text-xl font-bold">VM Kerítés Mester</h3>
+        </div>
+        <p class="text-gray-500 leading-relaxed text-sm">Modern kerítések, betonpecsételés és prémium kivitelezés Szigetszentmiklóson és környékén.</p>
+      </div>
+      <div>
+        <h4 class="text-sm uppercase tracking-widest gold mb-5">Menü</h4>
+        <div class="space-y-3 text-gray-400 text-sm">
+          <a href="rolam.html" class="block hover:text-white transition">Rólam</a>
+          <a href="szolgaltatasok.html" class="block hover:text-white transition">Szolgáltatások</a>
+          <a href="referenciak.html" class="block hover:text-white transition">Referenciák</a>
+          <a href="kapcsolat.html" class="block hover:text-white transition">Kapcsolat</a>
+          <a href="adatvedelem.html" class="block hover:text-white transition">Adatkezelés</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-sm uppercase tracking-widest gold mb-5">Kapcsolat</h4>
+        <div class="space-y-3 text-gray-400 text-sm">
+          <a href="tel:+36309388484" class="block hover:text-white transition">📞 +36 30 938 8484</a>
+          <a href="mailto:varga.mark@icloud.com" class="block hover:text-white transition break-all">✉ varga.mark@icloud.com</a>
+          <p>📍 2310 Szigetszentmiklós</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-gray-500 text-xs">
+      <span>© 2026 VM Kerítés Mester — Minden jog fenntartva.</span>
+      <span>Szigetszentmiklós • Prémium kivitelezés</span>
+    </div>
+  </div>
 </footer>
 
-
 <script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
 
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+  // Reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-if(menuBtn){
-menuBtn.addEventListener('click', () => {
-mobileMenu.classList.toggle('hidden');
-});
-}
+  // Counters
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target, 10);
+      const dur = 1400;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.floor(eased * target).toLocaleString('hu-HU');
+        if (t < 1) requestAnimationFrame(step); else el.textContent = target.toLocaleString('hu-HU');
+      };
+      requestAnimationFrame(step);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(c => counterIO.observe(c));
 
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(it => {
+        const cat = it.dataset.cat;
+        if (filter === 'all' || cat === filter) it.classList.remove('hidden-item');
+        else it.classList.add('hidden-item');
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  const lbTitle = document.getElementById('lightboxTitle');
+  const lbDesc = document.getElementById('lightboxDesc');
+  const lbClose = document.getElementById('lightboxClose');
+  const lbPrev = document.getElementById('lightboxPrev');
+  const lbNext = document.getElementById('lightboxNext');
+  let currentIndex = 0;
+  const itemArray = Array.from(items);
+
+  function openLightbox(idx) {
+    currentIndex = idx;
+    const it = itemArray[idx];
+    lbImg.src = it.dataset.src;
+    lbTitle.textContent = it.dataset.title;
+    lbDesc.textContent = it.dataset.desc;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function nextItem(dir) {
+    const visible = itemArray.filter(i => !i.classList.contains('hidden-item'));
+    const curr = itemArray[currentIndex];
+    const visIdx = visible.indexOf(curr);
+    const nextVis = visible[(visIdx + dir + visible.length) % visible.length];
+    openLightbox(itemArray.indexOf(nextVis));
+  }
+  items.forEach((it, idx) => it.addEventListener('click', () => openLightbox(idx)));
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', () => nextItem(-1));
+  lbNext.addEventListener('click', () => nextItem(1));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') nextItem(-1);
+    if (e.key === 'ArrowRight') nextItem(1);
+  });
 </script>
 
 </body>
